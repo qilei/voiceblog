@@ -28,7 +28,7 @@ public class JpaUserTest {
 		user.setUserName("qilei");
 		userService.addUser(user);
 		
-
+		//git test at 14:23
 	}
 
 }
