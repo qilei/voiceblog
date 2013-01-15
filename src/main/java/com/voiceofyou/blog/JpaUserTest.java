@@ -29,6 +29,7 @@ public class JpaUserTest {
 		userService.addUser(user);
 		
 		//git test at 14:23
+		//git test at 14:30
 	}
 
 }
