@@ -16,9 +16,18 @@ public class Entry implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Visibility visibility;
+	
+	@Enumerated(EnumType.STRING)
+	private PostStatus postStatus;
+	
+	private int commentCount;
+	private int viewCount;
+	
 	private Category category;
+	
 	private Set<Comment> comments;
 	private Set<EntryAttachment> attachments;
+	
 
 	public Entry() {
 		super();
@@ -97,4 +106,32 @@ public class Entry implements Serializable {
 		this.visibility = visibility;
 	}
 
+	@Column(name="post_status")
+	public PostStatus getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(PostStatus postStatus) {
+		this.postStatus = postStatus;
+	}
+	
+	@Column(name="comment_count")
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	@Column(name="view_count")
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	
 }

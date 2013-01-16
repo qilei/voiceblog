@@ -12,4 +12,16 @@ public interface EntryService {
 	Page<Entry> findAll(Pageable pageable);
 	
 	Entry find(int id);
+	
+	Entry save(Entry entry);
+	
+	Entry update(Entry entry);
+	
+	void delete(int id);
+	
+	/**
+	 * 增加浏览次数
+	 * @param entry
+	 */
+	void addViewCount(int id);
 }

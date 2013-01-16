@@ -15,15 +15,18 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<form id="mainForm" name="mainForm" method="post" action="${ctx }/admin/entry/create">
+				<input type="hidden" id="id" name="id" value="${entry.id }" />
+				<input type="hidden" id="postDate" name="postDate" value="${entry.postDate}" />
 				<div class="span9">
 					<fieldset>
 						<legend>发布文字</legend>
-						<label for="subject">标题</label> <input type="text" id="subject"
-							name="subject" class="input-block-level" /> <label for="body">内容</label>
-						<textarea rows="15" id="body" name="body"
-							class="input-block-level"></textarea>
-						<span class="pull-right"><button type="submit"
-								class="btn btn-primary">发布</button></span>
+						<label for="subject">标题</label> 
+						<input type="text" id="subject" name="subject" value="${entry.subject }" class="input-block-level" />
+						<label for="body">内容</label>
+						<textarea rows="15" id="body" name="body" class="input-block-level" >${entry.body }</textarea>
+						<span class="pull-right">
+							<button type="submit" class="btn btn-primary">发布</button>
+						</span>
 						<button type="button" class="btn">取消</button>
 					</fieldset>
 				</div>
