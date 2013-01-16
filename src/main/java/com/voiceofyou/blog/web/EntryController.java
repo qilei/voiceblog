@@ -52,31 +52,53 @@ public class EntryController {
 		model.addAttribute("entries", entries.getContent());
 		return "entry/list";
 	}
-
-	@RequestMapping(value={"/admin/entry/create","/admin"},method=RequestMethod.GET)
-	public String createForm(Model model){
-		//下拉菜单数据源
-		List<Category> categories=categoryService.findAll();
-		
-		model.addAttribute("categories", categories);
-		model.addAttribute("entry",new Entry());
-		model.addAttribute("visibility", Visibility.options());
-		
-		return "entry/create";
-	}
-	
-	@RequestMapping(value="/admin/entry/create",method=RequestMethod.POST)
-	public String save(Entry entry){
-		entry.setPostDate(new Date());
-		entryService.add(entry);
-		return "redirect:/";
-	}
 	
 	@RequestMapping(value="/entry/item")
 	public String item(Model model,int id){
 		Entry entry=entryService.find(id);
 		model.addAttribute("entry", entry);
 		return "entry/item";
+	}
+
+	@RequestMapping(value={"/admin/entry/list","/admin"})
+	public String listForAdmin(Model model,@RequestParam(value="p",defaultValue="1") Integer page){
+		Sort sort=new Sort(Sort.Direction.DESC,"postDate");
+		PageRequest pageRequest=new PageRequest(page-1,10,sort);
+		Page<Entry> entries=entryService.findAll(pageRequest);
+		model.addAttribute("entries", entries.getContent());
+		return "entry/admin/list";
+	}
+
+	@RequestMapping(value={"/admin/entry/create"},method=RequestMethod.GET)
+	public String createForm(Model model){
+		//下拉菜单数据源
+		List<Category> categories=categoryService.findAll();
+		
+		model.addAttribute("categories", categories);
+		model.addAttribute("visibility", Visibility.options());
+		
+		model.addAttribute("entry",new Entry());
+		
+		return "entry/create";
+	}
+
+	@RequestMapping(value={"/admin/entry/edit"},method=RequestMethod.GET)
+	public String edit(Model model,@RequestParam int id){
+		List<Category> categories=categoryService.findAll();
+		model.addAttribute("categories", categories);
+		
+		model.addAttribute("visibility", Visibility.options());
+		
+		Entry entry = entryService.find(id);
+		model.addAttribute("entry",entry);
+		
+		return "entry/create";
+	}
+	
+	@RequestMapping(value="/admin/entry/create",method=RequestMethod.POST)
+	public String save(Entry entry){
+		entryService.save(entry);
+		return "redirect:/admin";
 	}
 	
 	@RequestMapping(value="/admin/entry/uploadimg",method=RequestMethod.POST)

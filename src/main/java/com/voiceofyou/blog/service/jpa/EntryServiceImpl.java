@@ -1,5 +1,6 @@
 package com.voiceofyou.blog.service.jpa;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,31 @@ public class EntryServiceImpl implements EntryService {
 	@Override
 	public Page<Entry> findAll(Pageable pageable) {
 		return entryRepository.findAll(pageable);
+	}
+
+	@Override
+	public Entry update(Entry entry) {
+		return entryRepository.save(entry);
+	}
+
+	@Override
+	public void delete(int id) {
+		entryRepository.delete(id);
+	}
+
+	@Override
+	public void addViewCount(int id) {
+		Entry entry=find(id);
+		entry.setViewCount(entry.getViewCount()+1);
+		entryRepository.save(entry);
+	}
+
+	@Override
+	public Entry save(Entry entry) {
+		if(entry.getId() == 0){
+			entry.setPostDate(new Date());
+		}
+		return entryRepository.save(entry);
 	}
 
 }
