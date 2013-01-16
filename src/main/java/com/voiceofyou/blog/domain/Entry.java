@@ -6,13 +6,18 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name="entry")
 public class Entry implements Serializable {
 	private int id;
 	private String subject;
 	private String body;
-	private Date postDate;
+	private DateTime postDate;
 	
 	@Enumerated(EnumType.STRING)
 	private Visibility visibility;
@@ -60,13 +65,20 @@ public class Entry implements Serializable {
 	}
 
 	@Column(name="POST_DATE")
-	@Temporal(value=TemporalType.DATE)
-	public Date getPostDate() {
+	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(iso=ISO.DATE)
+//	@Temporal(value=TemporalType.DATE)
+	public DateTime getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date postDate) {
+	public void setPostDate(DateTime postDate) {
 		this.postDate = postDate;
+	}
+	
+	@Transient
+	public String getPostDateString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("yyyy-MM-dd").print(postDate);
 	}
 
 	@ManyToOne

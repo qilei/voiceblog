@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页</title>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#entry-list-tab").addClass("active");
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid">

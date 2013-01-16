@@ -25,8 +25,8 @@
 			<div class="span2">
 			<ul class="nav nav-list">
 				<li class="nav-header">文章</li>
-				<li><a href="#">所有文章</a></li>
-				<li class="active"><a href="#">写文章</a></li>
+				<li id="entry-list-tab"><a href="${ctx }/admin/entry/list">所有文章</a></li>
+				<li id="entry-create-tab"><a href="${ctx }/admin/entry/create">写文章</a></li>
 				<li><a href="#">分类</a></li>
 				<li><a href="#">标签</a></li>
 				<li class="divider"></li>

@@ -9,7 +9,7 @@ package com.voiceofyou.blog.domain;
  *
  */
 public enum PostStatus {
-	post("发布"), draft("草稿"), trash("回收站");
+	publish("发布"), draft("草稿"), trash("回收站");
 	
 	private String description;
 	

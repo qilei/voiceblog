@@ -22,8 +22,8 @@
 						<p>${entry.body }</p>
 						<div>
 							<span class="pull-right"><a href="${ctx }/entry/item?id=${entry.id}">阅读全文</a></span>
-							<span><i class="icon-eye-open"></i> 浏览：999</span>&nbsp;&nbsp;
-							<span><i class="icon-comment"></i> 评论：14</span>						
+							<span><i class="icon-eye-open"></i> 浏览：${entry.viewCount }</span>&nbsp;&nbsp;
+							<span><i class="icon-comment"></i> 评论：${entry.commentCount }</span>						
 						</div>
 						<hr/>
 					</div>				
