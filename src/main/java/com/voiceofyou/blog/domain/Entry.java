@@ -18,18 +18,12 @@ public class Entry implements Serializable {
 	private String subject;
 	private String body;
 	private DateTime postDate;
-	
-	@Enumerated(EnumType.STRING)
 	private Visibility visibility;
-	
-	@Enumerated(EnumType.STRING)
 	private PostStatus postStatus;
-	
 	private int commentCount;
 	private int viewCount;
 	
 	private Category category;
-	
 	private Set<Comment> comments;
 	private Set<EntryAttachment> attachments;
 	
@@ -109,15 +103,16 @@ public class Entry implements Serializable {
 		this.attachments = attachments;
 	}
 
-	
+	@Enumerated(EnumType.STRING)
 	public Visibility getVisibility() {
-		return visibility;
+		return this.visibility;
 	}
 
 	public void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
 	}
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="post_status")
 	public PostStatus getPostStatus() {
 		return postStatus;

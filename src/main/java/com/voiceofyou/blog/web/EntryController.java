@@ -55,8 +55,11 @@ public class EntryController {
 	
 	@RequestMapping(value="/entry/item")
 	public String item(Model model,int id){
+		entryService.addViewCount(id);
+		
 		Entry entry=entryService.find(id);
 		model.addAttribute("entry", entry);
+		
 		return "entry/item";
 	}
 
